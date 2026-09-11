@@ -1,8 +1,8 @@
-# 5. Scanner e System.out.printf em Java
+# Questão 5 – Scanner e System.out.printf em Java
 
-## Scanner para entrada de dados
+## Como o Scanner é utilizado
 
-O `Scanner` é uma classe do pacote `java.util` utilizada para ler dados digitados pelo usuário durante a execução do programa (entrada padrão, `System.in`). Para utilizá-lo, é necessário importar a classe e criar um objeto associado ao fluxo de entrada:
+O `Scanner` é uma classe do Java que uso para ler dados digitados pelo usuário durante a execução do programa. Para usar, primeiro importo a classe e depois crio um objeto associado à entrada padrão (`System.in`):
 
 ```java
 import java.util.Scanner;
@@ -10,21 +10,21 @@ import java.util.Scanner;
 Scanner scanner = new Scanner(System.in);
 ```
 
-A partir desse objeto, é possível chamar métodos específicos para cada tipo de dado que se deseja ler, como `nextInt()` para inteiros, `nextDouble()` para números decimais, `next()` para uma palavra (sem espaços) e `nextLine()` para uma linha inteira de texto. O programa fica "parado" aguardando a digitação até que o usuário pressione Enter.
+A partir desse objeto, posso chamar métodos diferentes dependendo do tipo de dado que quero ler: `nextInt()` para números inteiros, `nextDouble()` para números decimais, `next()` para uma palavra só e `nextLine()` para ler uma linha inteira. O programa fica esperando o usuário digitar algo e apertar Enter para continuar.
 
-## System.out.printf para formatação de saída
+## Como o System.out.printf ajuda na formatação
 
-O `System.out.printf()` permite exibir dados de forma formatada, usando **placeholders** (marcadores) que definem como cada valor deve aparecer. Diferente do `println()`, que apenas concatena texto, o `printf()` aceita múltiplos argumentos e aplica formatação a cada um deles através de códigos como:
+Já o `System.out.printf()` eu uso para exibir a saída de forma mais organizada, controlando como cada valor vai aparecer na tela. Diferente do `println()`, que só junta texto, o `printf()` usa marcadores de formatação, como:
 
 - `%d` — número inteiro
-- `%f` — número decimal (double/float)
-- `%.2f` — número decimal com exatamente 2 casas decimais
-- `%s` — texto (String)
-- `%n` — quebra de linha
+- `%f` — número decimal
+- `%.2f` — número decimal com 2 casas depois da vírgula
+- `%s` — texto
+- `%n` — pula linha
 
-Isso é especialmente útil quando se trabalha com valores monetários, médias, porcentagens ou qualquer situação em que se deseja controlar a quantidade de casas decimais exibidas, evitando números com muitas casas decimais desnecessárias.
+Isso é útil principalmente quando estou trabalhando com médias, valores em dinheiro ou qualquer número decimal que eu não quero mostrar com um monte de casas decimais desnecessárias.
 
-## Exemplo combinando os dois
+## Exemplo juntando os dois
 
 ```java
 import java.util.Scanner;
@@ -49,11 +49,11 @@ Digite um número decimal: 7.5896
 O número informado foi: 7.59
 ```
 
-Note que, mesmo o usuário tendo digitado `7.5896`, o `%.2f` fez o `printf` arredondar e exibir apenas duas casas decimais (`7.59`). Isso mostra como o Scanner cuida da **leitura** dos dados, enquanto o `printf` cuida da **apresentação** desses dados de forma controlada.
+Percebi que mesmo eu digitando `7.5896`, o `%.2f` arredondou e mostrou só duas casas decimais (`7.59`). Ou seja, o Scanner serve para ler o dado e o printf serve para controlar como esse dado aparece na saída.
 
 ---
 
-# 6. Correção do código `Contador`
+# Questão 6 – Correção do código Contador
 
 ```java
 import java.util.Scanner;
@@ -69,35 +69,35 @@ public class Contador {
 }
 ```
 
-## Erros identificados
+## Erros que encontrei
 
-**1. Erro de sintaxe: assinatura do `main` incorreta**
+**1. Erro de sintaxe na assinatura do main**
 
 ```java
 public static void main(String args) {
 ```
 
-O parâmetro do método `main` deve ser um **array de Strings** (`String[] args`), não uma `String` única. Sem os colchetes `[]`, o compilador não reconhece esse método como o ponto de entrada válido do programa, e ele nem chega a compilar/executar como esperado.
+Faltam os colchetes `[]`. O parâmetro do `main` precisa ser um array de Strings (`String[] args`), e não uma String sozinha. Sem isso, o Java não reconhece esse método como o ponto de entrada certo do programa.
 
-**Correção:**
+Correção:
 ```java
 public static void main(String[] args) {
 ```
 
-**2. Erro de sintaxe: falta ponto e vírgula (`;`)**
+**2. Falta ponto e vírgula**
 
 ```java
 System.out.println("Contador: " + contador)
 ```
 
-Toda instrução em Java deve terminar com `;`. Essa linha está sem o ponto e vírgula no final, o que gera erro de compilação.
+Toda linha de comando em Java precisa terminar com `;`, e essa está sem. Isso dá erro de compilação.
 
-**Correção:**
+Correção:
 ```java
 System.out.println("Contador: " + contador);
 ```
 
-**3. Erro de lógica: laço infinito (o `contador` nunca é incrementado)**
+**3. Erro de lógica: o contador nunca aumenta**
 
 ```java
 while (contador <= 5) {
@@ -105,11 +105,11 @@ while (contador <= 5) {
 }
 ```
 
-A variável `contador` começa em `0` e a condição do `while` é `contador <= 5`, mas dentro do laço **nada altera o valor de `contador`**. Isso significa que a condição nunca deixa de ser verdadeira, e o programa fica imprimindo `"Contador: 0"` **infinitamente**, sem nunca terminar.
+O `contador` começa em `0` e a condição do `while` é `contador <= 5`, só que dentro do laço eu não faço nada para mudar o valor do `contador`. Com isso, a condição nunca vira falsa e o programa entra num loop infinito, ficando preso imprimindo "Contador: 0" pra sempre.
 
-**Correção:** é necessário incrementar o `contador` a cada repetição, por exemplo com `contador++`.
+Para resolver, preciso incrementar o `contador` dentro do laço, usando `contador++`.
 
-## Código corrigido completo
+## Código corrigido
 
 ```java
 import java.util.Scanner;
@@ -136,4 +136,4 @@ Contador: 4
 Contador: 5
 ```
 
-Note que, apesar de o `Scanner` ter sido criado (`sc`), ele não é usado em nenhum momento no código original — isso não gera erro de compilação, mas é um indício de que talvez o exercício original pretendesse ler algum valor do usuário (como o limite do contador) e essa parte tenha sido esquecida.
+Uma última observação: o `Scanner` (`sc`) foi criado mas não é usado em nenhum momento do código. Isso não impede o programa de rodar, mas dá a entender que talvez o exercício original quisesse que eu lesse algum valor do usuário (tipo o limite do contador) e essa parte acabou ficando de fora.
