@@ -1,16 +1,21 @@
 import java.util.Scanner;
 
 void main(){
-    Scanner scanner= new Scanner (System.in);
-    int i, cont=0;
+    Scanner scanner = new Scanner(System.in);
     System.out.print("Informe um numero natural positivo: ");
-    int num= scanner.nextInt();
-    for(i=2; i<=num; i++) {
-        if (num % i == 0) {
-            cont = cont + 1;
+    int num = scanner.nextInt();
+
+    System.out.print("Os numeros primos de 2 a " + num + " sao: ");
+
+    for (int n = 2; n <= num; n++) {
+        int cont = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                cont++;
+            }
         }
-        if(cont==2){
-            System.out.println("os numero primos de 2 a " +num+ " sao " +i);
+        if (cont == 2) {
+            System.out.print(n + " ");
         }
     }
 }
