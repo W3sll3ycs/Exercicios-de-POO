@@ -4,6 +4,7 @@ void main() {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Informe um numero N qualquer: ");
     int num = scanner.nextInt();
+
     if(num % 3 == 0 && num % 5 == 0){
         System.out.println(num + " eh multiplo de 3 e 5");
     }
